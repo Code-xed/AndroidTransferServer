@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transfer</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Transfer</h1>
+      <p class="subtitle" id="connectionStatus">Connected to server</p>
+    </header>
+
+    <section class="primary-actions">
+      <label class="button button-primary" for="fileInput">Select files</label>
+      <input id="fileInput" type="file" multiple hidden />
+      <button id="uploadButton" class="button" disabled>Upload</button>
+    </section>
+
+    <section class="transfer-area" id="transferArea" hidden>
+      <h2>Uploads</h2>
+      <div id="transferList"></div>
+    </section>
+
+    <section class="file-list-section">
+      <div class="file-list-header">
+        <h2>Files</h2>
+        <button id="refreshButton" class="button-text">Refresh</button>
+      </div>
+      <div id="fileList" class="file-list"></div>
+      <p id="emptyState" class="empty-state" hidden>No files yet.</p>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
