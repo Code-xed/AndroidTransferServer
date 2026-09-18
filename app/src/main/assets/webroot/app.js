@@ -98,11 +98,11 @@ function uploadOne(file, onDone) {
 
 function createTransferRow(name, size) {
   const item = document.createElement('div');
-  item.className = 'transfer-item';
+  item.className = 'py-3';
   item.innerHTML = `
-    <div class="name-row"><span>${escapeHtml(name)}</span><span class="pct">0%</span></div>
-    <div class="progress-track"><div class="progress-fill"></div></div>
-    <div class="transfer-meta">0 / ${formatBytes(size)} &middot; 0 MB/s</div>
+    <div class="flex items-center justify-between gap-3 text-sm"><span>${escapeHtml(name)}</span><span class="pct">0%</span></div>
+    <div class="mt-2 h-1 overflow-hidden rounded-full bg-white/7"><div class="progress-fill h-full w-0 rounded-full bg-accent transition-[width]"></div></div>
+    <div class="transfer-meta mt-1 text-xs text-zinc-500">0 / ${formatBytes(size)} &middot; 0 MB/s</div>
   `;
   transferList.prepend(item);
   return item;
@@ -118,7 +118,7 @@ function updateTransferRow(row, loaded, total, speed) {
 
 function finishTransferRow(row, success, errorMsg) {
   row.querySelector('.progress-fill').style.width = '100%';
-  row.querySelector('.progress-fill').style.background = success ? 'var(--success)' : 'var(--danger)';
+  row.querySelector('.progress-fill').classList.toggle('bg-emerald-400', success); row.querySelector('.progress-fill').classList.toggle('bg-red-400', !success);
   row.querySelector('.pct').textContent = success ? 'Done' : (errorMsg || 'Failed');
 }
 
@@ -137,15 +137,15 @@ function renderFileList(entries) {
   emptyState.hidden = entries.length > 0;
   for (const entry of entries) {
     const row = document.createElement('div');
-    row.className = 'file-row';
+    row.className = 'group flex min-h-16 cursor-pointer items-center gap-3 border-b border-white/5 px-4 py-2.5 transition last:border-0 hover:bg-white/[.035] active:bg-white/[.06]';
     const icon = entry.isDirectory ? '\uD83D\uDCC1' : iconFor(entry.name);
     row.innerHTML = `
-      <span class="file-icon">${icon}</span>
-      <span class="file-name">${escapeHtml(entry.name)}</span>
-      <span class="file-meta">${entry.isDirectory ? '' : formatBytes(entry.size)}</span>
+      <span class="file-icon grid size-10 shrink-0 place-items-center rounded-xl bg-white/6 text-lg">${icon}</span>
+      <span class="file-name min-w-0 flex-1 truncate text-sm font-medium text-zinc-200">${escapeHtml(entry.name)}</span>
+      <span class="file-meta shrink-0 text-xs text-zinc-600">${entry.isDirectory ? 'Folder' : formatBytes(entry.size)}</span>
+      <svg class="size-4 shrink-0 text-zinc-700 transition group-hover:text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
     `;
     if (!entry.isDirectory) {
-      row.style.cursor = 'pointer';
       row.addEventListener('click', () => {
         window.location.href = '/files/' + encodeURIComponent(entry.name);
       });

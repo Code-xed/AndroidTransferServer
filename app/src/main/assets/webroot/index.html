@@ -1,41 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Transfer</title>
-  <link rel="stylesheet" href="/style.css" />
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b0f"><title>Transfer</title><link rel="stylesheet" href="/style.css">
 </head>
-<body>
-  <main class="app">
-    <header class="app-header">
-      <h1>Transfer</h1>
-      <p class="subtitle" id="connectionStatus">Connected to server</p>
-    </header>
-
-    <section class="primary-actions">
-      <label class="button button-primary" for="fileInput">Select files</label>
-      <input id="fileInput" type="file" multiple hidden />
-      <button id="uploadButton" class="button" disabled>Upload</button>
-    </section>
-
-    <section class="transfer-area" id="transferArea" hidden>
-      <h2>Uploads</h2>
-      <div id="transferList"></div>
-    </section>
-
-    <section class="file-list-section">
-      <div class="file-list-header">
-        <h2>Files</h2>
-        <button id="refreshButton" class="button-text">Refresh</button>
-      </div>
-      <div id="fileList" class="file-list"></div>
-      <p id="emptyState" class="empty-state" hidden>No files yet.</p>
-    </section>
-  </main>
-
-  <div id="toast" class="toast" hidden></div>
-
-  <script src="/app.js"></script>
-</body>
-</html>
+<body class="min-h-dvh bg-[#090b0f] text-zinc-100 antialiased selection:bg-accent/30">
+<main class="mx-auto min-h-dvh w-full max-w-3xl px-4 pb-28 pt-4 sm:px-6">
+<header class="sticky top-0 z-20 -mx-4 mb-5 border-b border-white/6 bg-[#090b0f]/90 px-4 py-3 backdrop-blur-xl sm:-mx-6 sm:px-6">
+ <div class="flex items-center gap-3"><div class="grid size-10 place-items-center rounded-xl bg-white/7 ring-1 ring-white/8"><svg class="size-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h3l1.5 2h6.5A2.5 2.5 0 0 1 20 9.5v8A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5z"/></svg></div><div class="min-w-0 flex-1"><h1 class="truncate text-base font-semibold tracking-tight">Transfer</h1><p id="connectionStatus" class="truncate text-xs text-zinc-500">Connected to server</p></div><button id="refreshButton" class="grid size-10 place-items-center rounded-xl text-zinc-400 transition hover:bg-white/7 hover:text-white" aria-label="Refresh"><svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 11a8 8 0 0 0-14.8-4M4 5v4h4M4 13a8 8 0 0 0 14.8 4M20 19v-4h-4"/></svg></button></div>
+</header>
+<section class="mb-5 flex items-center gap-2"><label for="fileInput" class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-black shadow-lg shadow-black/20 transition hover:bg-zinc-200 active:scale-[.98]"><svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16V4m0 0L8 8m4-4 4 4M5 20h14"/></svg>Select files</label><input id="fileInput" type="file" multiple hidden><button id="uploadButton" disabled class="rounded-xl bg-white/7 px-4 py-2.5 text-sm font-medium text-zinc-400 ring-1 ring-white/8 transition enabled:hover:bg-white/10 disabled:opacity-40">Upload</button></section>
+<section id="transferArea" hidden class="mb-5 overflow-hidden rounded-2xl bg-panel ring-1 ring-white/7"><div class="border-b border-white/6 px-4 py-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">Uploads</div><div id="transferList" class="divide-y divide-white/5 px-4"></div></section>
+<section><div class="mb-2 flex items-center justify-between"><h2 class="text-sm font-semibold text-zinc-200">Files</h2><span id="fileCount" class="text-xs text-zinc-600"></span></div><div id="fileList" class="overflow-hidden rounded-2xl bg-panel ring-1 ring-white/7"></div><div id="emptyState" hidden class="rounded-2xl border border-dashed border-white/10 py-16 text-center text-sm text-zinc-600">No files yet</div></section>
+</main><div id="toast" hidden class="fixed bottom-5 left-1/2 z-50 max-w-[calc(100%-32px)] -translate-x-1/2 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-black shadow-2xl"></div>
+<script src="/app.js"></script></body></html>
